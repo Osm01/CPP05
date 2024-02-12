@@ -16,7 +16,8 @@ int main()
 	try
 	{
 		Bureaucrat bureaucrat1("IDRISSI", 150);
-		Bureaucrat bureaucrat2 = bureaucrat1;
+		Bureaucrat bureaucrat2;
+		bureaucrat2 = bureaucrat1;
 		std::cout << bureaucrat2;
 	}
 	catch (std::exception &e)
@@ -30,6 +31,20 @@ int main()
 		for(;;)
 		{
 			bureaucrat1.increment();
+			std::cout << bureaucrat1;
+		}
+	}
+	catch (std::exception &e)
+	{
+		std::cout << RED << e.what() << std::endl;
+	}
+	std::cout << "--------------------------" << std::endl;
+	try
+	{
+		Bureaucrat bureaucrat1("low_man", 145);
+		for(;;)
+		{
+			bureaucrat1.decrement();
 			std::cout << bureaucrat1;
 		}
 	}

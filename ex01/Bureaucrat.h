@@ -11,6 +11,8 @@
 # define CYAN "\033[36m"
 # define RESET "\033[0m"
 
+class Form;
+
 class Bureaucrat
 {
 private:
@@ -35,6 +37,7 @@ public:
 	int 				getGrade() const;
 	void				increment();
 	void				decrement();
+	void				signForm(Form &form);
 	~Bureaucrat();
 };
 

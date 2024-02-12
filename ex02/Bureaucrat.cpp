@@ -1,4 +1,5 @@
 #include "Bureaucrat.h"
+#include "AForm.h"
 
 Bureaucrat::Bureaucrat() : name("Bureaucrat_0") , grade(1)
 {
@@ -65,6 +66,33 @@ const char *Bureaucrat::GradeTooHighException::what() const throw()
 const char *Bureaucrat::GradeTooLowException::what() const throw()
 {
 	return "Grade too Low";
+}
+
+void Bureaucrat::signForm(AForm &form)
+{
+	try
+	{
+		form.beSigned(*this);
+		std::cout << this->name << " signed " << form.get_name_form() << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << this->name << " cannot sign " << form.get_name_form() << " because " << e.what() << " for grade form requirement " << form.get_grade_to_sign() << std::endl;
+	}
+}
+
+void Bureaucrat::executeForm(const AForm &form)
+{
+	try
+	{
+		form.execute(*this);
+		std::cout << this->name << GREEN << " executed " << RESET << form.get_name_form() << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << this->name << RED << " cannot executed " << RESET << form.get_name_form() << " Because of "\
+		<< e.what() << std::endl;
+	}
 }
 
 std::ostream	&operator<<(std::ostream &o, const Bureaucrat &bureaucrat)
